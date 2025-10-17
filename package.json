@@ -2,26 +2,16 @@
   "name": "relpath-snippet-helper",
   "displayName": "RelPath Snippet Helper",
   "description": "Quickly insert or copy the workspace-relative file path; optionally insert a language-aware header comment.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "Ideas2Byte",
   "license": "MIT",
-  "engines": {
-    "vscode": "^1.90.0"
-  },
+  "engines": { "vscode": "^1.90.0" },
   "categories": ["Other"],
   "keywords": ["path", "relative", "header", "comment", "status bar"],
   "icon": "images/icon.png",
-  "galleryBanner": {
-    "color": "#0f172a",
-    "theme": "dark"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper"
-  },
-  "bugs": {
-    "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper/issues"
-  },
+  "galleryBanner": { "color": "#0f172a", "theme": "dark" },
+  "repository": { "type": "git", "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper" },
+  "bugs": { "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper/issues" },
   "homepage": "https://github.com/thewhisperinyourears/relpath-snippet-helper",
   "activationEvents": [
     "onStartupFinished",
@@ -32,43 +22,18 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "relpath.insertAtCursor",
-        "title": "RelPath: Insert relative path at cursor"
-      },
-      {
-        "command": "relpath.insertHeader",
-        "title": "RelPath: Insert header comment with relative path"
-      },
-      {
-        "command": "relpath.copyRelativePath",
-        "title": "RelPath: Copy relative path"
-      }
+      { "command": "relpath.insertAtCursor", "title": "RelPath: Insert relative path at cursor" },
+      { "command": "relpath.insertHeader", "title": "RelPath: Insert header comment with relative path" },
+      { "command": "relpath.copyRelativePath", "title": "RelPath: Copy relative path" }
     ],
     "keybindings": [
-      {
-        "command": "relpath.insertAtCursor",
-        "key": "ctrl+alt+p",
-        "when": "editorTextFocus"
-      }
+      { "command": "relpath.insertAtCursor", "key": "ctrl+alt+p", "when": "editorTextFocus" }
     ],
     "menus": {
       "editor/context": [
-        {
-          "when": "editorTextFocus",
-          "command": "relpath.insertAtCursor",
-          "group": "navigation@9"
-        },
-        {
-          "when": "editorTextFocus",
-          "command": "relpath.copyRelativePath",
-          "group": "navigation@9"
-        },
-        {
-          "when": "editorTextFocus",
-          "command": "relpath.insertHeader",
-          "group": "navigation@9"
-        }
+        { "when": "editorTextFocus", "command": "relpath.insertAtCursor", "group": "navigation@9" },
+        { "when": "editorTextFocus", "command": "relpath.copyRelativePath", "group": "navigation@9" },
+        { "when": "editorTextFocus", "command": "relpath.insertHeader", "group": "navigation@9" }
       ]
     },
     "configuration": {
@@ -108,6 +73,6 @@
     "@types/node": "^22.0.0",
     "@types/vscode": "^1.90.0",
     "typescript": "^5.5.0",
-    "vsce": "^3.0.0"
+    "@vscode/vsce": "^3.0.0"
   }
 }

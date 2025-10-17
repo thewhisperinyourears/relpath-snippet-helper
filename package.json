@@ -1,17 +1,17 @@
 {
   "name": "relpath-snippet-helper",
   "displayName": "RelPath Snippet Helper",
-  "description": "Adds a snippet command: ${command:relpath.insert} -> workspace-relative file path.",
-  "version": "0.0.1",
-  "publisher": "yourname",                      
+  "description": "Adds a snippet command: ${command:relpath.insert} -> workspace-relative file path, plus a command to insert a header comment.",
+  "version": "0.0.2",
+  "publisher": "Ideas2Byte",
   "license": "MIT",
   "engines": { "vscode": "^1.90.0" },
   "categories": ["Other"],
   "keywords": ["snippet", "path", "relative", "header", "comment"],
-  "icon": "images/icon.png",                    
-  "galleryBanner": {                             
-    "color": "#0f172a",                       
-    "theme": "dark"                              
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#0f172a",
+    "theme": "dark"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,11 @@
   },
   "bugs": { "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper/issues" },
   "homepage": "https://github.com/thewhisperinyourears/relpath-snippet-helper",
-  "activationEvents": ["onCommand:relpath.insert", "onCommand:relpath.insertHeader"],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:relpath.insert",
+    "onCommand:relpath.insertHeader"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [

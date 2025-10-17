@@ -2,23 +2,24 @@ import * as vscode from 'vscode';
 
 export function activate(ctx: vscode.ExtensionContext) {
   // 1) Return workspace-relative path (for snippets): ${command:relpath.insert}
-  const returnRel = vscode.commands.registerCommand('relpath.insert', async () => {
+  // Synchronous return so snippet expansion works reliably.
+  const returnRel = vscode.commands.registerCommand('relpath.insert', () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) return '';
     const doc = editor.document;
     const rel = vscode.workspace.asRelativePath(doc.uri, false);
     const ws = vscode.workspace.getWorkspaceFolder(doc.uri);
-    return ws ? rel : doc.fileName; // fallback absolute when no workspace
+    return ws ? rel : doc.fileName; // fallback to absolute when no workspace
   });
 
-  // 2) Insert/update a header comment with the relative path
+  // 2) Insert/update a header comment with the relative path (language-aware)
   const insertHeader = vscode.commands.registerCommand('relpath.insertHeader', async () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) return;
     await ensureHeader(editor.document);
   });
 
-  // Optional: auto insert/update when switching files
+  // Optional: auto insert/update when switching files or saving
   const cfg = vscode.workspace.getConfiguration();
   if (cfg.get<boolean>('relpath.autoInsertOnOpen', false)) {
     ctx.subscriptions.push(

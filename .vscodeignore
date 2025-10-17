@@ -1,0 +1,6 @@
+src/**
+.vscode/**
+**/*.map
+**/*.ts
+.gitignore
+README.md

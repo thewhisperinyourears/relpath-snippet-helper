@@ -1,0 +1,58 @@
+{
+  "name": "relpath-snippet-helper",
+  "displayName": "RelPath Snippet Helper",
+  "description": "Adds a snippet command: ${command:relpath.insert} -> workspace-relative file path.",
+  "version": "0.0.1",
+  "publisher": "yourname",                      
+  "license": "MIT",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Other"],
+  "keywords": ["snippet", "path", "relative", "header", "comment"],
+  "icon": "images/icon.png",                    
+  "galleryBanner": {                             
+    "color": "#0f172a",                       
+    "theme": "dark"                              
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper"
+  },
+  "bugs": { "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper/issues" },
+  "homepage": "https://github.com/thewhisperinyourears/relpath-snippet-helper",
+  "activationEvents": ["onCommand:relpath.insert", "onCommand:relpath.insertHeader"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "relpath.insert", "title": "RelPath: Return relative path for current file" },
+      { "command": "relpath.insertHeader", "title": "RelPath: Insert header comment with relative path" }
+    ],
+    "configuration": {
+      "title": "RelPath Snippet Helper",
+      "properties": {
+        "relpath.label": {
+          "type": "string",
+          "default": "Path",
+          "description": "Label shown before the path in the header comment."
+        },
+        "relpath.autoInsertOnOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically insert/update the header comment when you switch files."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "build": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "package": "vsce package",
+    "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.5.0",
+    "vsce": "^3.0.0"
+  }
+}

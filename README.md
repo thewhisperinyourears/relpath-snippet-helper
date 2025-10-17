@@ -1,15 +1,17 @@
 # RelPath Snippet Helper
 
-Adds a command you can call from snippets:
-- `${command:relpath.insert}` → returns the current file path **relative to the workspace root** (falls back to absolute if no workspace).
+![RelPath](images/screenshot.png)
 
-## Example snippet
+Adds:
+- `${command:relpath.insert}` → returns the current file path **relative to the workspace** (fallback to absolute if no workspace).
+- Command: **RelPath: Insert header comment with relative path** → inserts/updates a top-of-file comment using the correct comment syntax per language.
+
+## Snippet example
 
 ```jsonc
 {
   "Insert Relative Path": {
     "prefix": "relpath",
-    "body": ["// Path: ${command:relpath.insert}"],
-    "description": "Inserts path relative to workspace root"
+    "body": ["// Path: ${command:relpath.insert}"]
   }
 }

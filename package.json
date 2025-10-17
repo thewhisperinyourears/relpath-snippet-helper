@@ -1,13 +1,15 @@
 {
   "name": "relpath-snippet-helper",
   "displayName": "RelPath Snippet Helper",
-  "description": "Adds a snippet command: ${command:relpath.insert} -> workspace-relative file path, plus a command to insert a header comment.",
-  "version": "0.0.2",
+  "description": "Quickly insert or copy the workspace-relative file path; optionally insert a language-aware header comment.",
+  "version": "0.1.1",
   "publisher": "Ideas2Byte",
   "license": "MIT",
-  "engines": { "vscode": "^1.90.0" },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
   "categories": ["Other"],
-  "keywords": ["snippet", "path", "relative", "header", "comment"],
+  "keywords": ["path", "relative", "header", "comment", "status bar"],
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#0f172a",
@@ -17,19 +19,58 @@
     "type": "git",
     "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper"
   },
-  "bugs": { "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper/issues" },
+  "bugs": {
+    "url": "https://github.com/thewhisperinyourears/relpath-snippet-helper/issues"
+  },
   "homepage": "https://github.com/thewhisperinyourears/relpath-snippet-helper",
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:relpath.insert",
-    "onCommand:relpath.insertHeader"
+    "onCommand:relpath.insertAtCursor",
+    "onCommand:relpath.insertHeader",
+    "onCommand:relpath.copyRelativePath"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      { "command": "relpath.insert", "title": "RelPath: Return relative path for current file" },
-      { "command": "relpath.insertHeader", "title": "RelPath: Insert header comment with relative path" }
+      {
+        "command": "relpath.insertAtCursor",
+        "title": "RelPath: Insert relative path at cursor"
+      },
+      {
+        "command": "relpath.insertHeader",
+        "title": "RelPath: Insert header comment with relative path"
+      },
+      {
+        "command": "relpath.copyRelativePath",
+        "title": "RelPath: Copy relative path"
+      }
     ],
+    "keybindings": [
+      {
+        "command": "relpath.insertAtCursor",
+        "key": "ctrl+alt+p",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorTextFocus",
+          "command": "relpath.insertAtCursor",
+          "group": "navigation@9"
+        },
+        {
+          "when": "editorTextFocus",
+          "command": "relpath.copyRelativePath",
+          "group": "navigation@9"
+        },
+        {
+          "when": "editorTextFocus",
+          "command": "relpath.insertHeader",
+          "group": "navigation@9"
+        }
+      ]
+    },
     "configuration": {
       "title": "RelPath Snippet Helper",
       "properties": {
@@ -42,6 +83,16 @@
           "type": "boolean",
           "default": false,
           "description": "Automatically insert/update the header comment when you switch files."
+        },
+        "relpath.statusBar.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the relative path in the status bar (click to insert, Alt+click to copy)."
+        },
+        "relpath.includeWorkspaceFolder": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prepend the workspace folder name to the path (e.g., 'carai/cmd/main.go' instead of 'cmd/main.go')."
         }
       }
     }
